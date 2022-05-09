@@ -39,6 +39,14 @@ class PlatformProvider extends OrchidServiceProvider
                 ->route('platform.brands')
                 ->title('Setup'),
 
+                Menu::make('Payments')
+                ->icon('wallet')
+                ->route('platform.payments'),
+
+                Menu::make('Order Statuses')
+                ->icon('briefcase')
+                ->route('platform.orderstatuses'),
+
 
             Menu::make('Example screen')
                 ->icon('monitor')

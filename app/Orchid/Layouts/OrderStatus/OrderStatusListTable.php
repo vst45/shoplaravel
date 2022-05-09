@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Orchid\Layouts\Brand;
+namespace App\Orchid\Layouts\OrderStatus;
 
-use App\Models\Brand;
+use App\Models\OrderStatus;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 
-class BrandListTable extends Table
+class OrderStatusListTable extends Table
 {
     /**
      * Data source.
@@ -19,7 +19,7 @@ class BrandListTable extends Table
      *
      * @var string
      */
-    protected $target = 'brands';
+    protected $target = 'orderstatuses';
 
     /**
      * Get the table cells to be displayed.
@@ -30,10 +30,10 @@ class BrandListTable extends Table
     {
         return [
             TD::make('id', 'ID')->width('100px')->align(TD::ALIGN_CENTER)->sort(),
-            TD::make('title', 'Title')->render(function (Brand $brand) { // render dlya ucloviy
-                return $brand->title;
-            })->sort()->filter(TD::FILTER_TEXT)->width('400px'),
-            TD::make('action')->render(function (Brand $brand) {
+            TD::make('title', 'Title')->render(function (OrderStatus $orderstatus) { // render dlya ucloviy
+                return $orderstatus->title;
+            })->sort()->filter(TD::FILTER_TEXT)->width('300px'),
+            TD::make('action')->render(function (OrderStatus $orderstatus) {
 
 
                 return DropDown::make()
@@ -42,18 +42,18 @@ class BrandListTable extends Table
 
                         ModalToggle::make('Edit')
                             ->icon('pencil')
-                            ->modal('updateBrand')
-                            ->method('saveBrand')
-                            ->modalTitle(('Edit Brand ' . $brand->title))
+                            ->modal('updateOrderStatus')
+                            ->method('saveOrderStatus')
+                            ->modalTitle(('Edit OrderStatus ' . $orderstatus->title))
                             ->asyncParameters([
-                                'brand' => $brand->id
+                                'orderstatus' => $orderstatus->id
                             ]),
 
                         Button::make(__('Delete'))
                             ->icon('trash')
                             ->confirm(__('Delete?'))
                             ->method('remove', [
-                                'id' => $brand->id,
+                                'id' => $orderstatus->id,
                             ]),
 
                     ]);

@@ -17,6 +17,8 @@ use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
 
 use App\Orchid\Screens\Brand\BrandListScreen;
+use App\Orchid\Screens\Payment\PaymentListScreen;
+use App\Orchid\Screens\OrderStatus\OrderStatusListScreen;
 
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
@@ -38,6 +40,17 @@ Route::screen('brands', BrandListScreen::class)
         fn (Trail $trail) => $trail->parent('platform.index')->push('Brands')
     );
 
+Route::screen('payments', PaymentListScreen::class)
+    ->name('platform.payments')
+    ->breadcrumbs(
+        fn (Trail $trail) => $trail->parent('platform.index')->push('Payments')
+    );
+
+Route::screen('orderstatuses', OrderStatusListScreen::class)
+    ->name('platform.orderstatuses')
+    ->breadcrumbs(
+        fn (Trail $trail) => $trail->parent('platform.index')->push('Order Statuses')
+    );
 
 // Main
 Route::screen('/main', PlatformScreen::class)
