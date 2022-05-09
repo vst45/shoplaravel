@@ -15,6 +15,9 @@ use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
+
+use App\Orchid\Screens\Brand\BrandListScreen;
+
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 
@@ -28,6 +31,13 @@ use Tabuna\Breadcrumbs\Trail;
 | contains the need "dashboard" middleware group. Now create something great!
 |
 */
+
+Route::screen('brands', BrandListScreen::class)
+    ->name('platform.brands')
+    ->breadcrumbs(
+        fn (Trail $trail) => $trail->parent('platform.index')->push('Brands')
+    );
+
 
 // Main
 Route::screen('/main', PlatformScreen::class)

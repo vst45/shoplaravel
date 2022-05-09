@@ -18,7 +18,7 @@
                         {{-- <li><i class="ti-location-pin"></i> Store location</li>
                         <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li> --}}
                         @auth
-                            <li><i class="ti-user"></i> <a href="{{ route('siteAccount') }}">My account</a> ({{ Auth::user()->name }})</li>
+                            <li><i class="ti-user"></i> <a href="{{ route('platform.index') }}">Admin panel</a> ({{ Auth::user()->name }})</li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
