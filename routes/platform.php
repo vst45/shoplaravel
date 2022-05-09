@@ -19,6 +19,7 @@ use App\Orchid\Screens\User\UserProfileScreen;
 use App\Orchid\Screens\Brand\BrandListScreen;
 use App\Orchid\Screens\Payment\PaymentListScreen;
 use App\Orchid\Screens\OrderStatus\OrderStatusListScreen;
+use App\Orchid\Screens\Order\OrderListScreen;
 
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
@@ -33,6 +34,12 @@ use Tabuna\Breadcrumbs\Trail;
 | contains the need "dashboard" middleware group. Now create something great!
 |
 */
+
+Route::screen('orders', OrderListScreen::class)
+    ->name('platform.orders')
+    ->breadcrumbs(
+        fn (Trail $trail) => $trail->parent('platform.index')->push('Orders')
+    );
 
 Route::screen('brands', BrandListScreen::class)
     ->name('platform.brands')

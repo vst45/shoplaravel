@@ -30,23 +30,44 @@ class PlatformProvider extends OrchidServiceProvider
         return [
 
 
-            Menu::make('Return to Shop')
+            Menu::make('Return to Site')
                 ->icon('dollar')
                 ->route('index'),
 
-                Menu::make('Brands')
-                ->icon('briefcase')
-                ->route('platform.brands')
-                ->title('Setup'),
-
-                Menu::make('Payments')
+            Menu::make('Orders')
                 ->icon('wallet')
-                ->route('platform.payments'),
+                ->route('platform.orders'),
 
-                Menu::make('Order Statuses')
-                ->icon('briefcase')
-                ->route('platform.orderstatuses'),
+            Menu::make('Setup')
+                ->icon('wrench')
+                ->list([
 
+                    Menu::make('Brands')
+                        ->icon('basket')
+                        ->route('platform.brands')
+                        ->title('Setup'),
+
+                    Menu::make('Payments')
+                        ->icon('wallet')
+                        ->route('platform.payments'),
+
+                    Menu::make('Order Statuses')
+                        ->icon('briefcase')
+                        ->route('platform.orderstatuses'),
+                ]),
+
+            Menu::make(__('Users'))
+                ->icon('user')
+                ->route('platform.systems.users')
+                ->permission('platform.systems.users')
+                ->title(__('Access rights')),
+
+            Menu::make(__('Roles'))
+                ->icon('lock')
+                ->route('platform.systems.roles')
+                ->permission('platform.systems.roles'),
+
+            /*
 
             Menu::make('Example screen')
                 ->icon('monitor')
@@ -103,16 +124,7 @@ class PlatformProvider extends OrchidServiceProvider
                     return Dashboard::version();
                 }, Color::DARK()),
 
-            Menu::make(__('Users'))
-                ->icon('user')
-                ->route('platform.systems.users')
-                ->permission('platform.systems.users')
-                ->title(__('Access rights')),
-
-            Menu::make(__('Roles'))
-                ->icon('lock')
-                ->route('platform.systems.roles')
-                ->permission('platform.systems.roles'),
+ */
         ];
     }
 
