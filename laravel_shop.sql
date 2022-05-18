@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 06 2022 г., 15:20
+-- Время создания: Май 10 2022 г., 01:15
 -- Версия сервера: 8.0.24
 -- Версия PHP: 8.1.1
 
@@ -58,6 +58,13 @@ CREATE TABLE `attachments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `attachments`
+--
+
+INSERT INTO `attachments` (`id`, `name`, `original_name`, `mime`, `extension`, `size`, `sort`, `path`, `description`, `alt`, `hash`, `disk`, `user_id`, `group`, `created_at`, `updated_at`) VALUES
+(1, 'c5f3cae3f898b4e07cc456cd4c8fb46d2d6da01f', 'калку.jpg', 'image/jpeg', 'jpg', 52895, 0, '2022/05/09/', NULL, NULL, '4eda7e09ae2e4391d01d6bf6395352976e0ff7cc', 'public', 1, NULL, '2022-05-09 17:31:30', '2022-05-09 17:31:30');
 
 -- --------------------------------------------------------
 
@@ -133,7 +140,13 @@ INSERT INTO `brands` (`id`, `title`, `created_at`, `updated_at`) VALUES
 (22, 'Commodi Nesciunt', '2022-05-01 17:18:53', '2022-05-01 17:18:53'),
 (23, 'Libero Voluptatum', '2022-05-01 17:18:53', '2022-05-01 17:18:53'),
 (24, 'Laboriosam Quae', '2022-05-01 17:18:53', '2022-05-01 17:18:53'),
-(25, 'Quaerat Aspernatur', '2022-05-01 17:18:53', '2022-05-01 17:18:53');
+(25, 'Quaerat Aspernatur', '2022-05-01 17:18:53', '2022-05-01 17:18:53'),
+(26, 'brenda', '2022-05-07 18:47:21', '2022-05-07 18:47:21'),
+(27, 'Rtends', '2022-05-07 19:37:33', '2022-05-07 19:37:33'),
+(28, 'ABC1234', '2022-05-08 09:28:22', '2022-05-08 19:17:46'),
+(29, 'CDE2', '2022-05-08 19:00:16', '2022-05-08 19:00:23'),
+(30, 'ACE', '2022-05-08 19:04:33', '2022-05-08 19:04:33'),
+(31, 'AASe34', '2022-05-08 19:19:50', '2022-05-09 05:13:53');
 
 -- --------------------------------------------------------
 
@@ -192,7 +205,7 @@ INSERT INTO `categories` (`id`, `title`, `slug`, `category_id`, `order`, `create
 
 CREATE TABLE `failed_jobs` (
   `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -329,7 +342,7 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `user_id`, `fname`, `lname`, `phone`, `email`, `address`, `post`, `payment_id`, `order_status_id`, `amount`, `full_amount`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 1, 'rr', 'tt', '44', 'aef@ear.ewr', 'wd', 'ff', 3, 1, 153116, 167600, NULL, '2022-05-06 08:19:22', '2022-05-06 08:19:22'),
-(2, 1, 'rr', 'tt', '44', 'aef@ear.ewr', 'wd', 'ff', 2, 1, 153116, 167600, NULL, '2022-05-06 08:21:59', '2022-05-06 08:21:59'),
+(2, 2, 'rr', 'tt', '44', 'aef@ear.ewr', 'wd', 'ff', 2, 1, 153116, 167600, NULL, '2022-05-06 07:21:59', '2022-05-06 08:21:59'),
 (3, 1, 'rr', 'tt', '44', 'aef@ear.ewr', 'wd', 'ff', 2, 1, 153116, 167600, NULL, '2022-05-06 08:23:15', '2022-05-06 08:23:15');
 
 -- --------------------------------------------------------
@@ -378,6 +391,16 @@ CREATE TABLE `order_statuses` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `order_statuses`
+--
+
+INSERT INTO `order_statuses` (`id`, `title`, `created_at`, `updated_at`) VALUES
+(1, 'New', '2022-05-09 14:44:10', '2022-05-09 14:44:10'),
+(2, 'Work', '2022-05-09 14:44:18', '2022-05-09 14:44:18'),
+(3, 'Archive', '2022-05-09 14:44:27', '2022-05-09 14:44:27'),
+(4, 'Delete', '2022-05-09 14:44:44', '2022-05-09 14:44:44');
+
 -- --------------------------------------------------------
 
 --
@@ -415,7 +438,7 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `title`, `created_at`, `updated_at`) VALUES
-(1, 'Check Payments', NULL, NULL),
+(1, 'Check Payment', NULL, '2022-05-09 14:43:47'),
 (2, 'On Delivery', NULL, NULL),
 (3, 'PayPal', NULL, NULL),
 (4, 'Credit Card', NULL, NULL);
@@ -1482,9 +1505,9 @@ INSERT INTO `products` (`id`, `name`, `description`, `category_id`, `brand_id`, 
 
 CREATE TABLE `roles` (
   `id` int UNSIGNED NOT NULL,
-  `slug` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `permissions` text DEFAULT NULL,
+  `permissions` json DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1523,13 +1546,13 @@ INSERT INTO `role_users` (`user_id`, `role_id`) VALUES
 CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `permissions` text DEFAULT NULL
+  `permissions` json DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1683,7 +1706,7 @@ ALTER TABLE `attachmentable`
 -- AUTO_INCREMENT для таблицы `attachments`
 --
 ALTER TABLE `attachments`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `bigbanners`
@@ -1695,7 +1718,7 @@ ALTER TABLE `bigbanners`
 -- AUTO_INCREMENT для таблицы `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT для таблицы `categories`
@@ -1737,13 +1760,13 @@ ALTER TABLE `order_product`
 -- AUTO_INCREMENT для таблицы `order_statuses`
 --
 ALTER TABLE `order_statuses`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `personal_access_tokens`

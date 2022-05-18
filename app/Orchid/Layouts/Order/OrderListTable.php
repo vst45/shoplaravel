@@ -44,7 +44,7 @@ class OrderListTable extends Table
             TD::make('products', 'Products')->render(function (Order $order) {
                 $content = '';
                 foreach ($order->products as $product) {
-                    $content .= $product->name. '('. $product->pivot->quantity.'x'.format_price($product->getActualPriceAttribute()). ')<br>';
+                    $content .= $product->name. '('. $product->pivot->quantity.'x'.format_price($product->pivot->amount). ')<br>';
                 }
                 return $content;
             })->sort()->filter(TD::FILTER_TEXT),

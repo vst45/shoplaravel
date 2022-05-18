@@ -55,8 +55,14 @@ class OrderController extends BaseController
             'full_amount' => $basket['full_amount'],
         ]);
 
-        foreach ($basket['basket'] as $id => $quantity) {
-            $order->products()->attach([$id => ['quantity' => $quantity]]);
+        foreach ($basket['products'] as $item) {
+            $order->products()->attach([
+                $item['id'] =>
+                [
+                    'quantity' => $item['quantity'],
+                    'amount' => $item['actual_price']
+                ]
+            ]);
         }
 
         return response()->json($basket, 200);

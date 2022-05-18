@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
             $table->unsignedInteger('quantity');
+            $table->unsignedInteger('amount');
             $table->timestamps();
         });
     }
